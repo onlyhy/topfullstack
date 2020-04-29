@@ -3,7 +3,7 @@
     <el-aside width="200px">
       <el-menu mode="vertical" style="height:100vh;" :default-active="$route.path" router>
         <el-submenu v-for="(item, index) in menu.items"
-          :index="index + 1"
+          :index="`menu-item-${index}`"
           :key="`menu-item-${index}`">
           <template slot="title">{{item.title}}</template>
           <el-menu-item 
@@ -46,7 +46,7 @@ export default class Main extends Vue {
            title:"课程管理",path:'/courses/list'
          },
          {
-           title:"课时管理",path:'/courses/list'
+           title:"课时管理",path:'/episodes/list'
          }
        ]
      },
@@ -61,8 +61,6 @@ export default class Main extends Vue {
 
    ]
  }
-}{
-
 }
 </script>
 
