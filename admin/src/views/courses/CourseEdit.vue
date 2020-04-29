@@ -1,15 +1,12 @@
 <!--
  * @Date: 2020-04-28 14:08:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-04-29 16:01:40
+ * @LastEditTime: 2020-04-29 16:49:09
  -->
 <template>
   <div>
     <h3>{{isNew?'创建':'编辑'}}课程</h3>
-    <ele-form
-    :form-data="data"
-    :form-desc="fields"
-    ></ele-form>
+    <ele-form v-model="data" :form-desc="fields" :request-fn="submit"></ele-form>
   </div>
 </template>
 
@@ -28,16 +25,26 @@ export default class CourseEdit extends Vue {
   }
 
   fields = {
-    name: { label: "课程名称",type:"input" },
-    cover: { label: "课程封面图",type:"input" }
+    name: { label: "课程名称", type: "input" },
+    cover: { label: "课程封面图", type: "input" }
   };
 
   async fetch() {
-    const res = await this.$http.get("courses");
+    const res = await this.$http.get(`courses/${this.id}`);
     this.data = res.data;
   }
+
+  async submit(data) {
+    const url = this.isNew ? `courses` : `courses/${this.id}`;
+    const method = this.isNew ? `post` : `put`;
+    await this.$http[method](url, data);
+    this.$message.success("保存成功");
+    this.data = {};
+    // 返回上一个页面
+    this.$router.go(-1);
+  }
   created() {
-    this.fetch();
+    !this.isNew && this.fetch();
   }
 }
 </script>
