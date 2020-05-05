@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-04-28 14:08:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-05 15:35:12
+ * @LastEditTime: 2020-05-05 22:42:12
  -->
 <template>
   <div>
@@ -26,7 +26,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 
 @Component({})
 export default class ResourceList extends Vue {
-  @Prop(String) resource: string;
+  @Prop(String) resource !: string;
   data: any = {};
   option: any = {};
   // 配置分页参数

@@ -10,7 +10,7 @@ import router from './router'
 //Vue.use(EleForm)
 const http = axios.create({
   // 接口根地址
-  baseURL: 'http://localhost:3000'
+  baseURL: process.env.VUE_APP_API_URL
 })
 // avue上传用
 Vue.prototype.$httpajax = http
