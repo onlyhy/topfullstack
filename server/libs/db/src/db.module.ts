@@ -10,12 +10,25 @@ const models = TypegooseModule.forFeature([User,Course,Episode])
 @Global()
 @Module({
   imports:[
-    TypegooseModule.forRoot('',{
-      useNewUrlParser:true,
-      useUnifiedTopology:true,
-      useCreateIndex:true,
-      useFindAndModify:false
-    }),models,
+    // 这里要用异步初始化的方法,才能读到process.env
+    TypegooseModule.forRootAsync({
+      useFactory(){
+        return{
+          uri: process.env.DB,
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useCreateIndex: true,
+          useFindAndModify: false
+        }
+      }
+    }),
+    // TypegooseModule.forRoot(process.env.DB,{
+    //   useNewUrlParser:true,
+    //   useUnifiedTopology:true,
+    //   useCreateIndex:true,
+    //   useFindAndModify:false
+    // }),
+    models,
   ],
   providers: [DbService],
   exports: [DbService,models],
