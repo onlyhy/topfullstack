@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-04-28 14:08:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-05 14:28:09
+ * @LastEditTime: 2020-05-05 15:10:35
  -->
 <template>
   <div>
@@ -16,6 +16,7 @@
       @row-del="remove"
       @on-load="changePage"
       @sort-change="changeSort"
+      @search-change="search"
     ></avue-crud>
   </div>
 </template>
@@ -62,6 +63,20 @@ export default class ResourceList extends Vue {
     }
     this.fetch();
   }
+
+  async search(where, done) {
+    done();
+    // 模糊查询，根据在定义模型的时候属性有没加regex为true来判断是否要用模糊查询
+    for (let k in where) {
+      const field = this.option.column.find(v => v.prop === k);
+      if (field.regex) {
+        where[k] = { $regex: where[k] };
+      }
+    }
+    this.query.where = where;
+    this.fetch();
+  }
+
   async fetch() {
     const res = await this.$http.get(`${this.resource}`, {
       params: {

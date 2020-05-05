@@ -21,7 +21,8 @@ export class CoursesController {
         return{
             title: '课程管理',
             column: [
-                { prop: 'name', label: '课程名称',sortable:true },
+                // regex表示这个字段搜索用正则表达式搜索
+                { prop: 'name', label: '课程名称',sortable:true ,search:true,regex:true},
                 { prop: 'cover', label: '课程封面图' }
             ]
         }
