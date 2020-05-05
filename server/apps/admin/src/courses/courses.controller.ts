@@ -25,7 +25,7 @@ export class CoursesController {
                 // row为true这个字段会占一整行,也可通过ele的sapn来控制宽度
                 // regex表示这个字段搜索用正则表达式搜索
                 // action是图片上传地址
-                { prop: 'name', label: '课程名称', sortable: true, search: true, regex: true, row: true },
+                { prop: 'name', label: '课程名称', sortable: true, search: true, regex: true, row: true, span:24},
                 { prop: 'cover', label: '课程封面图', type: 'upload', width: 120, dataType: 'string', row: true, action: 'upload' }
             ]
         }

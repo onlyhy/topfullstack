@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-04-22 16:44:36
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-04-24 17:05:23
+ * @LastEditTime: 2020-05-05 16:57:29
  */
 import { prop, modelOptions, arrayProp, Ref } from '@typegoose/typegoose'
 import { ApiProperty } from '@nestjs/swagger'
@@ -21,7 +21,4 @@ export class Course {
     @prop()
     cover: string
 
-    // itemsRef是给Mongoose用的，用字符串保险一点
-    @arrayProp({itemsRef: 'Episode'})
-    episodes:Ref<Episode>[]
 }
