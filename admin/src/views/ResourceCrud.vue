@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-04-28 14:08:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-05 14:07:46
+ * @LastEditTime: 2020-05-05 14:28:09
  -->
 <template>
   <div>
@@ -15,6 +15,7 @@
       @row-update="update"
       @row-del="remove"
       @on-load="changePage"
+      @sort-change="changeSort"
     ></avue-crud>
   </div>
 </template>
@@ -35,7 +36,7 @@ export default class ResourceList extends Vue {
     total: 0
   };
   query: any = {
-    limit: 2
+    // sort:{_id:-1}
   };
   // 获取配置
   async fetchOption() {
@@ -43,13 +44,24 @@ export default class ResourceList extends Vue {
     this.option = res.data;
   }
 
-  //传来的page参数里面有currentPage和pageSize
+  //传来的page参数里面有currentPage和pageSize，解构赋值
   async changePage({ pageSize, currentPage }) {
     this.query.page = currentPage;
     this.query.limit = pageSize;
     this.fetch();
   }
 
+  async changeSort({ prop, order }) {
+    if (!order) {
+      this.query.sort = null;
+    } else {
+      this.query.sort = {
+        // 这里要注意prop要加括号，不加括号就是写死的prop，加了括号就是具体的要排序的列了
+        [prop]: order === "ascending" ? 1 : -1
+      };
+    }
+    this.fetch();
+  }
   async fetch() {
     const res = await this.$http.get(`${this.resource}`, {
       params: {
