@@ -1,10 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  // NestExpressApplication表示app是基于express的应用
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors();
+  // 静态文件托管，需要给app加上泛型NestExpressApplication
+  app.useStaticAssets('uploads',{
+    prefix:'/uploads'
+  })
   const options = new DocumentBuilder()
     .setTitle('全栈之巅-后台管理API')
     .setDescription('供后台管理界面调用的服务端API')

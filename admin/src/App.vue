@@ -18,4 +18,8 @@ export default class App extends Vue {}
 body{
   margin: 0;
 }
+/* 修改一下图片上传时的样式 */
+.avue-upload__avatar{
+  height: auto!important;
+}
 </style>

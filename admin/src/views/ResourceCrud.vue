@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-04-28 14:08:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2020-05-05 15:10:35
+ * @LastEditTime: 2020-05-05 15:35:12
  -->
 <template>
   <div>
@@ -66,7 +66,7 @@ export default class ResourceList extends Vue {
 
   async search(where, done) {
     done();
-    // 模糊查询，根据在定义模型的时候属性有没加regex为true来判断是否要用模糊查询
+    // 模糊查询，根据在contorller里面属性有没加regex为true来判断是否要用模糊查询
     for (let k in where) {
       const field = this.option.column.find(v => v.prop === k);
       if (field.regex) {

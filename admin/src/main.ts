@@ -5,15 +5,18 @@ import './plugins/element'
 import './plugins/avue'
 import router from './router'
 // 引入 vue-ele-form
-import EleForm from 'vue-ele-form'
+//import EleForm from 'vue-ele-form'
 // 注册 vue-ele-form
-Vue.use(EleForm)
-
-Vue.config.productionTip = false
-Vue.prototype.$http = axios.create({
+//Vue.use(EleForm)
+const http = axios.create({
   // 接口根地址
-  baseURL:'http://localhost:3000'
+  baseURL: 'http://localhost:3000'
 })
+// avue上传用
+Vue.prototype.$httpajax = http
+// 平时请求接口用
+Vue.prototype.$http = http
+Vue.config.productionTip = false
 
 
 new Vue({
