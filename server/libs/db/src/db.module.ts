@@ -10,7 +10,7 @@ const models = TypegooseModule.forFeature([User,Course,Episode])
 @Global()
 @Module({
   imports:[
-    TypegooseModule.forRoot('mongodb://localhost/topfullstack',{
+    TypegooseModule.forRoot('',{
       useNewUrlParser:true,
       useUnifiedTopology:true,
       useCreateIndex:true,
