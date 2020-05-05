@@ -15,8 +15,11 @@ export class AppController {
   // file表示的是从前端请求里取的字段名就是file
   @UseInterceptors(FileInterceptor('file'))
   async upload(@UploadedFile('file') file) {
-    return {
-      url:`http://localhost:3000/uploads/${file.filename}`
-    }
+    return file 
+    // 使用阿里云oss后不需要再定义url，它会自己生成
+    //本地
+    // return {
+    //   url:`http://localhost:3000/uploads/${file.filename}`
+    // }
   }
 }
