@@ -28,15 +28,6 @@ const MAO = require('multer-aliyun-oss');
       }
     }),
     // MulterModule.register({
-    //   // 阿里云oss
-    //   storage: MAO({
-    //     config: {
-    //       region: 'oss-cn-hangzhou.',
-    //       accessKeyId: 'LTAI4GG6gE8YKAj9v35cfACu',
-    //       accessKeySecret: 'RaTJISkmW9ge4m3G6ZB3kjMvozep61',
-    //       bucket: 'topfullstackhy'
-    //     }
-    //   })
     //   //本地
     //   //dest:'uploads'
     // }), 
